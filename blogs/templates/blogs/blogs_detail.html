@@ -1,0 +1,27 @@
+{% extends 'blogs/base_detail.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<section class="About-area section-gap" id="about">
+
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col-lg-6 about-left">
+        <img class="f-img img-fluid mx-auto" src="{{ blog.image1.url }}" alt="">
+      </div>
+      <div class="col-lg-6 about-right">
+        <h1>
+          {{ blog.title }}
+        </h1>
+        <h3>
+          {{ blog.location }}<h4>{{ blog.date }}
+        </h3>
+        <br><br>
+        <p>{{ blog.description }}</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

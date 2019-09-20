@@ -18,13 +18,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-#from jobs import views
+from blogs import views
 
 urlpatterns = [
     path('a/', include('api.urls')),
     path('admin/', admin.site.urls),
-    #path('', views.home, name='home'),
+    path('', views.home, name='home'),
     #path('job/new/', views.job_new, name='job_new'),
     #path('job/<int:pk>/edit/', views.job_edit, name='job_edit'),
-    #path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

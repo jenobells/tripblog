@@ -5,6 +5,8 @@ from blogs.models import Blog
 from .serializers import BlogSerializer
 from django.http import Http404
 from rest_framework.views import APIView
+from django.shortcuts import render
+
 
 class BlogList(APIView):
     def get(self, request, format=None):
@@ -29,7 +31,7 @@ class BlogDetail(APIView):
     def get(self, request, pk, format=None):
         blog = self.get_object(pk)
         serializer = BlogSerializer(blog)
-        return Response(serializer.data)
+        return render(request, 'blogs/blogs_detail.html', {'blog':blog})
 
     def put(self, request, pk, format=None):
         blog = self.get_object(pk)
@@ -43,3 +45,10 @@ class BlogDetail(APIView):
         blog = self.get_object(pk)
         blog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def home(request):
+    blog = Blog.objects.all()
+    return render(request, 'blogs/blogs.html', {'blogs':blog})
+
+def blogs_new(request):
+    return render(request, 'blogs/blogs_new.html')
